@@ -18,7 +18,7 @@ export default function RootLayout() {
           tabBarStyle: {
             backgroundColor: scheme === "dark" ? "#0B0B0F" : "#FFFFFF",
             borderTopColor: scheme === "dark" ? "#1E1E24" : "#EAEAEA",
-            height: 70,
+            height: 60,
             paddingBottom: 10,
           },
           tabBarActiveTintColor: "#a71bfa",
@@ -35,7 +35,9 @@ export default function RootLayout() {
             } else if (route.name === "tasks") {
               return (
                 <Ionicons
-                  name={focused ? "checkmark-circle" : "checkmark-circle-outline"}
+                  name={
+                    focused ? "checkmark-circle" : "checkmark-circle-outline"
+                  }
                   size={26}
                   color={color}
                 />

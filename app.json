@@ -1,7 +1,7 @@
 {
   "scheme": "acme",
   "userInterfaceStyle": "automatic",
-  "orientation": "default",
+  "orientation": "portrait",
   "web": {
     "output": "static"
   },

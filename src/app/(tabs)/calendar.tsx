@@ -6,6 +6,7 @@ import {
   ScrollView,
   TouchableOpacity,
   StatusBar,
+  StyleSheet,
 } from "react-native";
 
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
@@ -101,16 +102,19 @@ const CalendarScreen = () => {
                 {week.map((day, dayIndex) => (
                   <TouchableOpacity
                     key={dayIndex}
-                    className="flex-1 items-center py-2"
+                    className="flex-1 items-center py-2 "
                     onPress={() => setSelectedDate(day)}
                   >
                     <View
-                      className={`w-10 h-10 rounded-full items-center justify-center ${
-                        day === selectedDate ? "bg-blue-300 shadow-lg" : ""
-                      }`}
+                      className={`w-10 h-10  items-center justify-center `}
+                      style={{
+                        backgroundColor:
+                          day === selectedDate ? "#4F46E5" : "transparent",
+                        borderRadius: day === selectedDate ? 100 : 0,
+                      }}
                     >
                       <Text
-                        className={`text-sm font-medium ${
+                        className={`text-sm font-medium  ${
                           day === selectedDate
                             ? "text-white"
                             : "text-gray-800 dark:text-white"
@@ -132,17 +136,17 @@ const CalendarScreen = () => {
             {["Day", "Week", "Month"].map((view) => (
               <TouchableOpacity
                 key={view}
-                className={`flex-1 py-3 rounded-lg ${
-                  currentView === view
-                    ? "bg-white dark:bg-white/10 shadow-md"
-                    : ""
-                }`}
+                style={[
+                  styles.filterButton,
+                  currentView === view && styles.activeFilter,
+                ]}
+                className={`flex-1 py-3 rounded-lg `}
                 onPress={() => setCurrentView(view)}
               >
                 <Text
                   className={`text-sm font-medium text-center ${
                     currentView === view
-                      ? "text-gray-800 dark:text-white"
+                      ? "text-gray-800 dark:text-black"
                       : "text-gray-500 dark:text-gray-400"
                   }`}
                 >
@@ -204,5 +208,24 @@ const CalendarScreen = () => {
     </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  filterButton: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    height: 40,
+    borderRadius: 8,
+    marginHorizontal: 4,
+  },
+  activeFilter: {
+    backgroundColor: "white",
+    shadowOpacity: 0.2,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 4,
+    shadowColor: "#000",
+    elevation: 3,
+  },
+});
 
 export default CalendarScreen;
